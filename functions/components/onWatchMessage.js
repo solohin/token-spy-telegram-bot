@@ -13,6 +13,6 @@ module.exports = function (chatId, text) {
         return sendTelegramMessage(chatId, `\`${address}\` - это не похоже на адрес кошелька Ethereum...`);
     }
     const messagePromise = sendTelegramMessage(chatId, `Добро. Теперь буду каждые 2 минуты проверять транзакции кошелька \`${address}\``);
-    const dbPromise = admin.database().ref(`/watch/${chatId}`).push({address, name});
+    const dbPromise = admin.database().ref(`/watch/${chatId}/address`).update({address, name});
     return Promise.all([messagePromise, dbPromise])
 };
