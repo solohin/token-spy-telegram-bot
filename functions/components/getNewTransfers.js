@@ -8,8 +8,9 @@ const round = val => Math.round(val * 100) / 100;
 
 module.exports = function (account, lastTs) {
     const URL = `https://api.ethplorer.io/getAddressHistory/${account}?apiKey=freekey&limit=20`;
+    const proxyURL = `http://p-9680565372.appspot.com/https-proxy/?path=${encodeURIComponent(URL)}`;
     return request({
-        uri: URL,
+        uri: proxyURL,
         resolveWithFullResponse: true
     }).then(response => {
         if (response.statusCode >= 400) {

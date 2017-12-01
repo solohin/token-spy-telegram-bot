@@ -34,10 +34,13 @@ module.exports = function (chatId, text) {
                 resolveWithFullResponse: true
             }).then(response => {
                 if (response.statusCode >= 400) {
-                    throw new Error(`Could not send message to ${subscriber}: ${response.body}`);
+                    return Promise.reject(`Could not send message to ${subscriber}: ${response.body}`);
                 }
+            }).catch(e => {
+                console.error('Ошибка отправки сообщения к ' + subscriber + e, e)
+                return Promise.resolve();
             })
         });
-        return Promise.all(promises);
+        return Promise.all(promises)
     });
 };

@@ -23,7 +23,7 @@ const handleOne = ({address, name, lastTs}) => {
         if (!lastTs)
             transfers = transfers.slice(0, 1);
 
-        const promises = transfers.map(transfer => sendMessage(chatId, address, name, transfer));
+        const promises = transfers.map(transfer => sendMessage(address, name, transfer));
         promises.push(admin.database().ref(`/watch_global/${address}/lastTs`).set(transfers[0].timestamp));
 
         return Promise.all(promises);

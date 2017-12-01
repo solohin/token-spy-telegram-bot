@@ -9,19 +9,22 @@ const onParseNewTransfers = require('./components/onParseNewTransfers');
 objectValues.shim();
 
 admin.initializeApp(functions.config().firebase);
-console.log(JSON.stringify(functions.config().firebase,null,2));
+
 exports.telegramWebhook = functions.https.onRequest((request, response) => {
+    console.log(request.body);
     const text = request.body.message.text;
     const chatId = request.body.message.chat.id;
     console.log(functions.config());
     console.log(`Got message from @${request.body.message.chat.username}: ${text}`);
     return onMessage(chatId, text).then(() => {
+        console.log('successful finish');
         response.send("ok");
     });
 });
 
 exports.onParseNewTransfers = functions.https.onRequest((request, response) => {
     return onParseNewTransfers().then(()=>{
+        console.log('successful finish');
         response.send("ok");
     })
 });
