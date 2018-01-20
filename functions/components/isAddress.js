@@ -1,6 +1,8 @@
 "use strict";
 //https://ethereum.stackexchange.com/questions/1374/how-can-i-check-if-an-ethereum-address-is-valid
-
+const keccak256 = require('js-sha3').keccak256;
+//https://ethereum.stackexchange.com/questions/1374/how-can-i-check-if-an-ethereum-address-is-valid
+const sha3 = mes => keccak256(mes);
 /**
  * Checks if the given string is a checksummed address
  *

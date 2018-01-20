@@ -11,6 +11,8 @@
   "dependencies": {
     "firebase-admin": "~5.4.2",
     "firebase-functions": "^0.7.1",
+    "js-sha3": "^0.6.1",
+    "object.values": "^1.0.4",
     "request": "^2.83.0",
     "request-promise": "^4.2.2"
   },

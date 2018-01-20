@@ -1,7 +1,6 @@
 "use strict";
 //libs
 const request = require('request-promise');
-const functions = require('firebase-functions');
 //modules
 const config = require('../config');
 //init
@@ -16,7 +15,8 @@ module.exports = function (chatId, text) {
         body: {
             chat_id: chatId,
             text,
-            parse_mode: 'Markdown'
+            parse_mode: 'Markdown',
+            disable_web_page_preview: true,
         },
         resolveWithFullResponse: true
     }).then(response => {
